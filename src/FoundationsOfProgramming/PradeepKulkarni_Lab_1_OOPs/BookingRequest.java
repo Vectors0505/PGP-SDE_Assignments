@@ -2,14 +2,18 @@ package FoundationsOfProgramming.PradeepKulkarni_Lab_1_OOPs;
 
 import java.util.Scanner;
 
+// class to create a new booking request
 public class BookingRequest{
 	private static final Scanner sc = new Scanner(System.in);
 	private int occupancy;
 	private boolean hasAC;
 
+	// method will get the details of the booking request and call method in Hotel to check if
+	// room is available as per the requirements
 	public static void getBookingRequest(Hotel hotel) {
 		BookingRequest newReq = new BookingRequest();
 
+		// get input for occupancy requirement
 		do {
 			System.out.println("What is the occupancy required? 1. Single 2. Double 3. Triple: ");
 			newReq.occupancy = sc.nextInt();
@@ -24,6 +28,7 @@ public class BookingRequest{
 			}
 		} while (newReq.occupancy < 1 || newReq.occupancy > 3);
 
+		// get input for AC requirement
 		int temp;
 		do {
 			System.out.println("Enter 1 for AC & 2 for Non-AC room: ");
@@ -37,6 +42,7 @@ public class BookingRequest{
 			}
 		} while (!(temp == 1) && !(temp == 2));
 
+		// get input to check if they have any specific floor request
 		do {
 			System.out.println("Enter 1 for any specific floor request & 2 if there is no specific request: ");
 			temp = sc.nextInt();
@@ -50,6 +56,8 @@ public class BookingRequest{
 			}
 		} while (!(temp == 1) && !(temp == 2));
 
+		// if the customer has any specific floor request if-command block will execute
+		// else room will be allocated at any floor
 		boolean booked = false;
 		if (temp == 1) {
 			do {

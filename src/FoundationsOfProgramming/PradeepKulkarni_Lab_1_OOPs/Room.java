@@ -7,6 +7,9 @@ public class Room{
 	private final String roomNo;
 	private final int occupancy;
 	private final boolean hasAC;
+
+	// basePrice is the price of occupancy 1 and for non AC room
+	// we increase the price 1000 rs per occupancy and 1000 if room has AC benefit
 	private final int basePrice;
 	private boolean available;
 	private int price;
@@ -19,7 +22,11 @@ public class Room{
 		this.basePrice = 2000;
 	}
 
+	// createRoom method will be called by Hotel to initialize all the rooms in the hotel
 	public static Room createRoom(int floor, int roomNumberOnFloor) {
+		// for now assuming the rooms on each floor won't exceed 9
+		// we're storing roomNo as floor number + 0 + room number
+		// example roomNo: 102 indicates 1 is the floor number and room no is 2 on that floor
 		String roomNo = floor + "0" + roomNumberOnFloor;
 
 		int occupancy;
@@ -57,6 +64,7 @@ public class Room{
 		return room;
 	}
 
+	// setPrice method to change the prices as per requirements and easy to change
 	private void setPrice() {
 		this.price = basePrice;
 		for (int i = 1 ; i < occupancy ; i++) {
